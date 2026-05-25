@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reunião 01/06 — Pousada das Missões</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --laranja: #E07B20;
+  --verde: #1A6B2F;
+  --marrom: #5C3A1E;
+  --amarelo: #F5A623;
+  --preto: #111111;
+  --branco: #FFFFFF;
+  --cinza-claro: #F4F1EC;
+  --cinza-medio: #E2DDD6;
+  --vermelho: #C0392B;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Nunito', sans-serif; background: var(--cinza-claro); color: var(--preto); }
+
+/* NAV TABS */
+.nav-tabs {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: var(--preto);
+  border-bottom: 3px solid var(--laranja);
+}
+
+.nav-tabs-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 24px;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: var(--branco);
+  letter-spacing: 2px;
+  padding: 14px 24px 14px 0;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.nav-logo span { color: var(--laranja); }
+
+.tab-btn {
+  padding: 16px 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  white-space: nowrap;
+}
+
+.tab-btn:hover { color: rgba(255,255,255,0.8); }
+.tab-btn.active { color: var(--laranja); border-bottom-color: var(--laranja); }
+
+/* HEADER */
+.header {
+  background: var(--preto);
+  padding: 100px 32px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 56px; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--laranja), var(--amarelo), var(--verde));
+}
+
+.header::after {
+  content: 'MISSÕES';
+  position: absolute;
+  right: -20px; bottom: -20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 180px;
+  color: rgba(255,255,255,0.03);
+  letter-spacing: 8px;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.header-inner { max-width: 1100px; margin: 0 auto; }
+
+.header-badge {
+  display: inline-block;
+  background: var(--laranja);
+  color: var(--branco);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.header-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 7vw, 72px);
+  color: var(--branco);
+  letter-spacing: 3px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.header-title span { color: var(--laranja); }
+
+.header-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.stats-bar {
+  background: var(--laranja);
+  padding: 14px 32px;
+}
+
+.stats-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--branco);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+}
+
+/* TABS CONTENT */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* MAIN */
+.main { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+/* SECTION HEADER */
+.sec-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  border-radius: 10px;
+}
+
+.sec-header.laranja { background: var(--laranja); }
+.sec-header.verde { background: var(--verde); }
+.sec-header.marrom { background: var(--marrom); }
+.sec-header.vermelho { background: var(--vermelho); }
+.sec-header.preto { background: var(--preto); }
+
+.sec-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.sec-info { flex: 1; }
+
+.sec-titulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: var(--branco);
+  letter-spacing: 2px;
+}
+
+.sec-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* CARDS */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+
+.card {
+  background: var(--branco);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+.card-top {
+  padding: 20px 20px 14px;
+  border-bottom: 1px solid var(--cinza-medio);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.card-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.card-info { flex: 1; }
+
+.card-titulo {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--preto);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag-laranja { background: #FEF3E0; color: #C06010; }
+.tag-verde { background: #E8F4EC; color: #1A6B2F; }
+.tag-vermelho { background: #FDEDEC; color: #C0392B; }
+.tag-preto { background: #EEEEEE; color: #333333; }
+
+.card-body { padding: 16px 20px; }
+
+.card-body p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+.card-body p:last-child { margin-bottom: 0; }
+
+.card-body strong { color: var(--preto); font-weight: 800; }
+
+.card-body ul {
+  list-style: none;
+  margin-top: 8px;
+}
+
+.card-body ul li {
+  font-size: 13px;
+  color: #555;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--cinza-medio);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.card-body ul li:last-child { border-bottom: none; }
+
+.card-body ul li::before {
+  content: '→';
+  color: var(--laranja);
+  font-weight: 800;
+  flex-shrink: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.card-body ul.check li::before { content: '✓'; color: var(--verde); }
+.card-body ul.cross li::before { content: '✗'; color: var(--vermelho); }
+
+/* HIGHLIGHT BOX */
+.highlight {
+  background: var(--preto);
+  border-radius: 12px;
+  padding: 32px 36px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--laranja), var(--amarelo));
+}
+
+.highlight-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 12px;
+}
+
+.highlight-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--branco);
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.highlight-text span { color: var(--laranja); }
+
+.highlight-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 600;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* NÚMEROS */
+.numeros-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.numero-card {
+  background: var(--branco);
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: all 0.2s ease;
+  border-top: 4px solid var(--laranja);
+}
+
+.numero-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+.numero-card.verde { border-top-color: var(--verde); }
+.numero-card.marrom { border-top-color: var(--marrom); }
+.numero-card.amarelo { border-top-color: var(--amarelo); }
+
+.numero-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--laranja);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.numero-card.verde .numero-val { color: var(--verde); }
+.numero-card.marrom .numero-val { color: var(--marrom); }
+.numero-card.amarelo .numero-val { color: var(--amarelo); }
+
+.numero-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.numero-sub { font-size: 12px; color: #777; font-weight: 600; }
+
+/* PRINTS */
+.print-box {
+  background: var(--branco);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border-left: 5px solid var(--laranja);
+}
+
+.print-box.verde { border-left-color: var(--verde); }
+.print-box.vermelho { border-left-color: var(--vermelho); }
+
+.print-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--laranja);
+  margin-bottom: 10px;
+}
+
+.print-box.verde .print-label { color: var(--verde); }
+.print-box.vermelho .print-label { color: var(--vermelho); }
+
+.print-titulo {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--preto);
+  margin-bottom: 8px;
+}
+
+.print-texto {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.65;
+}
+
+.print-texto strong { color: var(--preto); }
+
+/* PERGUNTA CARDS */
+.pergunta-card {
+  background: var(--branco);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  margin-bottom: 16px;
+  transition: all 0.2s ease;
+}
+
+.pergunta-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+.pergunta-header {
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.pergunta-card.open .pergunta-header { border-bottom-color: var(--cinza-medio); }
+
+.pergunta-quem {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.quem-sandra { background: #FDEDEC; color: var(--vermelho); }
+.quem-dono { background: #FEF3E0; color: #C06010; }
+.quem-ambos { background: #EEEEEE; color: #444; }
+
+.pergunta-texto {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--preto);
+  flex: 1;
+  line-height: 1.4;
+}
+
+.pergunta-toggle {
+  font-size: 18px;
+  color: var(--laranja);
+  font-weight: 800;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  margin-top: 2px;
+}
+
+.pergunta-card.open .pergunta-toggle { transform: rotate(45deg); }
+
+.pergunta-resposta {
+  display: none;
+  padding: 20px 20px 20px 20px;
+}
+
+.pergunta-card.open .pergunta-resposta { display: block; }
+
+.resp-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--verde);
+  margin-bottom: 8px;
+}
+
+.resp-texto {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.resp-texto strong { color: var(--preto); }
+
+.resp-texto em {
+  display: block;
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: #F4F1EC;
+  border-left: 3px solid var(--laranja);
+  border-radius: 0 8px 8px 0;
+  font-style: normal;
+  font-size: 13px;
+  color: #333;
+  font-weight: 700;
+}
+
+/* SCRIPT BOX */
+.script-box {
+  background: var(--preto);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  border-left: 5px solid var(--laranja);
+}
+
+.script-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--laranja);
+  margin-bottom: 12px;
+}
+
+.script-text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.script-text em {
+  color: var(--amarelo);
+  font-style: normal;
+  font-weight: 800;
+}
+
+/* FUNIL */
+.funil {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.funil-step {
+  padding: 28px 24px;
+  text-align: center;
+  position: relative;
+}
+
+.funil-step::after {
+  content: '→';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  font-weight: 800;
+  color: rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.funil-step:last-child::after { display: none; }
+
+.funil-step.ok { background: #E8F4EC; }
+.funil-step.problema { background: #FDEDEC; }
+
+.funil-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.funil-step.ok .funil-num { color: var(--verde); }
+.funil-step.problema .funil-num { color: var(--vermelho); }
+
+.funil-titulo {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--preto);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.funil-desc { font-size: 11px; color: #666; line-height: 1.5; }
+
+.funil-status {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-ok { background: rgba(26,107,47,0.15); color: var(--verde); }
+.status-prob { background: rgba(192,57,43,0.15); color: var(--vermelho); }
+
+/* TIMELINE */
+.timeline { margin-bottom: 40px; }
+
+.tl-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.tl-dot {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--laranja);
+  color: var(--branco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tl-content {
+  background: var(--branco);
+  border-radius: 10px;
+  padding: 16px 20px;
+  flex: 1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.tl-titulo { font-size: 14px; font-weight: 800; color: var(--preto); margin-bottom: 4px; }
+.tl-desc { font-size: 13px; color: #555; line-height: 1.6; }
+
+/* FOOTER */
+footer {
+  background: var(--preto);
+  padding: 24px 32px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-txt { font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 600; }
+.footer-txt span { color: var(--laranja); }
+
+@media(max-width: 768px) {
+  .grid-2, .grid-3, .numeros-grid, .funil { grid-template-columns: 1fr; }
+  .nav-tabs-inner { overflow-x: auto; padding: 0 12px; }
+  .tab-btn { padding: 14px 12px; font-size: 10px; }
+  .main { padding: 24px 16px; }
+  .highlight { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV TABS -->
+<div class="nav-tabs">
+  <div class="nav-tabs-inner">
+    <div class="nav-logo">Pousada das <span>Missões</span></div>
+    <button class="tab-btn active" onclick="showTab('dados')">📊 Dados</button>
+    <button class="tab-btn" onclick="showTab('problema')">🔍 Problema</button>
+    <button class="tab-btn" onclick="showTab('solucao')">✅ Solução</button>
+    <button class="tab-btn" onclick="showTab('perguntas')">❓ Perguntas</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">Reunião · 01 de Junho de 2026</div>
+    <div class="header-title">APRESENTAÇÃO <span>ESTRATÉGICA</span></div>
+    <div class="header-sub">Pousada das Missões · São Miguel das Missões, RS · Pedro Munaretto</div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num">725</span> conversas geradas</div>
+    <div class="stat"><span class="stat-num">166k</span> pessoas alcançadas</div>
+    <div class="stat"><span class="stat-num">R$1,21</span> custo por lead</div>
+    <div class="stat"><span class="stat-num">R$878</span> investidos</div>
+  </div>
+</div>
+
+<!-- ABA 1: DADOS -->
+<div id="tab-dados" class="tab-content active">
+  <div class="main">
+
+    <div class="highlight">
+      <div class="highlight-label">Resumo executivo</div>
+      <div class="highlight-text">O marketing está <span>entregando.</span><br>O gargalo está no atendimento.</div>
+      <div class="highlight-sub">725 conversas geradas com investimento de R$878,64. O interesse existe — o problema está no que acontece depois que o lead chega.</div>
+    </div>
+
+    <div class="sec-header laranja" style="margin-bottom:20px">
+      <div class="sec-num">01</div>
+      <div class="sec-info">
+        <div class="sec-titulo">Resultados das Campanhas</div>
+        <div class="sec-sub">Dados reais — período de veiculação ativa</div>
+      </div>
+    </div>
+
+    <div class="numeros-grid">
+      <div class="numero-card">
+        <div class="numero-val">725</div>
+        <div class="numero-label">Conversas Iniciadas</div>
+        <div class="numero-sub">Leads que chegaram ao WhatsApp</div>
+      </div>
+      <div class="numero-card verde">
+        <div class="numero-val">166k</div>
+        <div class="numero-label">Pessoas Alcançadas</div>
+        <div class="numero-sub">Alcance total das campanhas</div>
+      </div>
+      <div class="numero-card marrom">
+        <div class="numero-val">R$1,21</div>
+        <div class="numero-label">Custo por Lead</div>
+        <div class="numero-sub">Abaixo da média do setor</div>
+      </div>
+      <div class="numero-card amarelo">
+        <div class="numero-val">R$878</div>
+        <div class="numero-label">Total Investido</div>
+        <div class="numero-sub">Valor total em mídia paga</div>
+      </div>
+    </div>
+
+    <div class="sec-header verde" style="margin-bottom:20px">
+      <div class="sec-num">02</div>
+      <div class="sec-info">
+        <div class="sec-titulo">Análise do Funil</div>
+        <div class="sec-sub">Onde o resultado está sendo gerado e onde está quebrando</div>
+      </div>
+    </div>
+
+    <div class="funil">
+      <div class="funil-step ok">
+        <div class="funil-num">166k</div>
+        <div class="funil-titulo">Alcance</div>
+        <div class="funil-desc">Pessoas que viram os anúncios das Missões</div>
+        <div class="funil-status status-ok">✓ Funcionando</div>
+      </div>
+      <div class="funil-step ok">
+        <div class="funil-num">725</div>
+        <div class="funil-titulo">Leads</div>
+        <div class="funil-desc">Conversas iniciadas no WhatsApp</div>
+        <div class="funil-status status-ok">✓ Funcionando</div>
+      </div>
+      <div class="funil-step problema">
+        <div class="funil-num">~0</div>
+        <div class="funil-titulo">Reservas</div>
+        <div class="funil-desc">Conversões em hospedagem confirmada</div>
+        <div class="funil-status status-prob">✗ Gargalo aqui</div>
+      </div>
+    </div>
+
+    <div class="sec-header marrom" style="margin-bottom:20px">
+      <div class="sec-num">03</div>
+      <div class="sec-info">
+        <div class="sec-titulo">Escopo do Trabalho</div>
+        <div class="sec-sub">O que é minha responsabilidade e onde termina</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-top">
+          <div class="card-icon">✅</div>
+          <div class="card-info">
+            <div class="card-titulo">Minha responsabilidade</div>
+            <span class="card-tag tag-verde">Entregue</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="check">
+            <li>Gestão completa das campanhas no Meta Ads</li>
+            <li>Criação de conteúdo e estratégia de comunicação</li>
+            <li>Geração de leads qualificados</li>
+            <li>Script de atendimento (entregue como contribuição extra)</li>
+            <li>Relatórios e dados de performance</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <div class="card-icon">⚠️</div>
+          <div class="card-info">
+            <div class="card-titulo">Fora do meu escopo</div>
+            <span class="card-tag tag-vermelho">Setor de atendimento</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="cross">
+            <li>Responder leads no WhatsApp</li>
+            <li>Fazer follow-up com clientes que pararam de responder</li>
+            <li>Fechar reservas e negociar condições</li>
+            <li>Montar pacotes e roteiros para grupos</li>
+            <li>Definir o que oferecer além da hospedagem</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABA 2: PROBLEMA -->
+<div id="tab-problema" class="tab-content">
+  <div class="main">
+
+    <div class="highlight">
+      <div class="highlight-label">Diagnóstico central</div>
+      <div class="highlight-text">O lead chega qualificado.<br>O atendimento <span>quebra a venda.</span></div>
+      <div class="highlight-sub">Três padrões identificados nas conversas: preço passado antes de criar valor, pergunta do cliente ignorada, cliente mandado embora sem oferecer alternativa.</div>
+    </div>
+
+    <div class="sec-header vermelho" style="margin-bottom:20px">
+      <div class="sec-num">01</div>
+      <div class="sec-info">
+        <div class="sec-titulo">Casos Identificados</div>
+        <div class="sec-sub">Análise de conversas reais que não converteram</div>
+      </div>
+    </div>
+
+    <div class="print-box vermelho">
+      <div class="print-label">⚠️ Caso 01 — Lead ignorado</div>
+      <div class="print-titulo">Grupo da UNIcruz — 25 pessoas, sábado e domingo com pernoite</div>
+      <div class="print-texto">
+        O cliente perguntou claramente se a pousada tem sugestão de roteiro para conhecer os Sete Povos das Missões. A resposta foi: <strong>"Ola Boa Noite / tudo bem / sim / qual seria a data da reserva???"</strong><br><br>
+        Quatro mensagens separadas que ignoraram completamente a pergunta do cliente. Ele perguntou sobre roteiro — recebeu pedido de data. Resultado: <strong>não voltou a responder.</strong>
+      </div>
+    </div>
+
+    <div class="print-box vermelho">
+      <div class="print-label">⚠️ Caso 02 — Cliente mandado embora</div>
+      <div class="print-titulo">Grupo de 25 pessoas — pacote com saída e retorno de Cruz Alta</div>
+      <div class="print-texto">
+        Cliente pediu pacote completo com transporte de Cruz Alta para 25 pessoas. A resposta foi: <strong>"Vou passar o contato de um guia pra ele."</strong><br><br>
+        A pousada não tem transporte — mas tem hospedagem para 25 pessoas. O correto seria manter o cliente dentro oferecendo o que tem e indicando parceiro para o traslado. Em vez disso, <strong>o cliente foi enviado para outra pessoa</strong> — e foi embora junto.
+      </div>
+    </div>
+
+    <div class="print-box">
+      <div class="print-label">📌 Padrão identificado — Sem follow-up</div>
+      <div class="print-titulo">Clientes que "ficam de responder" e somem</div>
+      <div class="print-texto">
+        Em múltiplas conversas, o cliente para de responder após receber o preço ou após a primeira troca de mensagens. <strong>Não há nenhum processo sistemático de reativação.</strong> O lead simplesmente morre.<br><br>
+        Em hotelaria, o cliente raramente fecha na primeira mensagem. Ele pesquisa, compara e demora. <strong>Quem faz follow-up fecha. Quem não faz, perde.</strong>
+      </div>
+    </div>
+
+    <div class="sec-header laranja" style="margin-bottom:20px; margin-top:40px">
+      <div class="sec-num">02</div>
+      <div class="sec-info">
+        <div class="sec-titulo">O Argumento do Som e Luz</div>
+        <div class="sec-sub">300 pessoas no evento. 1 na pousada. O que isso significa?</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-top">
+          <div class="card-icon">🎭</div>
+          <div class="card-info">
+            <div class="card-titulo">300 no Som e Luz · 1 na Pousada</div>
+            <span class="card-tag tag-vermelho">Problema de conversão</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Esse dado não prova que o marketing está errado. Prova o oposto: <strong>o interesse existe.</strong> 300 pessoas vieram até São Miguel pra ver o espetáculo. A maioria não ficou na pousada porque não sabia que ela existia ou porque não foi atendida quando perguntou.</p>
+          <p>O marketing traz as pessoas certas. O funil quebra depois.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <div class="card-icon">🎯</div>
+          <div class="card-info">
+            <div class="card-titulo">A estratégia está correta</div>
+            <span class="card-tag tag-verde">Confirmado pela própria Sandra</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Sandra afirmou: <strong>"as pessoas não querem conhecer um quarto da pousada, elas querem saber sobre o que está nos anúncios."</strong></p>
+          <p>Isso confirma a estratégia — anunciar a experiência das Missões atrai quem vai precisar de hospedagem. O problema não é o conteúdo. É o que acontece quando o lead chega.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABA 3: SOLUÇÃO -->
+<div id="tab-solucao" class="tab-content">
+  <div class="main">
+
+    <div class="highlight">
+      <div class="highlight-label">Proposta de solução</div>
+      <div class="highlight-text">Três mudanças simples que<br><span>podem virar o jogo.</span></div>
+      <div class="highlight-sub">Nenhuma dessas mudanças depende de mais investimento em marketing. Dependem de processo interno.</div>
+    </div>
+
+    <div class="sec-header verde" style="margin-bottom:20px">
+      <div class="sec-num">01</div>
+      <div class="sec-info">
+        <div class="sec-titulo">Processo de Follow-Up</div>
+        <div class="sec-sub">A mudança com maior impacto imediato na conversão</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <div class="tl-content">
+          <div class="tl-titulo">Dia 2 após silêncio</div>
+          <div class="tl-desc">"Oi [nome], tudo bem? Vi que você ficou de verificar as datas — ainda posso ajudar com a reserva?"</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-content">
+          <div class="tl-titulo">Dia 5 após silêncio</div>
+          <div class="tl-desc">"Oi [nome], ainda temos disponibilidade para [período que ele perguntou]. Posso garantir sua data hoje se quiser."</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div class="tl-content">
+          <div class="tl-titulo">Dia 10 após silêncio</div>
+          <div class="tl-desc">"Oi [nome], última mensagem — se precisar de hospedagem nas Missões, estarei por aqui. Qualquer dúvida é só chamar."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-header laranja" style="margin-bottom:20px">
+      <div class="sec-num">02</div>
+      <div class="sec-info">
+        <div class="sec-titulo">Script de Atendimento</div>
+        <div class="sec-sub">Roteiro para os primeiros momentos da conversa — antes de passar o preço</div>
+      </div>
+    </div>
+
+    <div class="script-box">
+      <div class="script-label">🎯 Roteiro recomendado — primeiras mensagens</div>
+      <div class="script-text">
+        1. Receber o cliente com saudação + apresentação da pousada em uma frase<br><br>
+        2. Perguntar: <em>"Para qual data você está pensando em vir?"</em><br><br>
+        3. Perguntar: <em>"É para quantas pessoas?"</em><br><br>
+        4. Se o cliente perguntar sobre roteiro: <em>responder sobre as atrações ANTES de falar preço</em><br><br>
+        5. Só então apresentar o valor — com contexto de localização e estrutura
+      </div>
+    </div>
+
+    <div class="sec-header marrom" style="margin-bottom:20px">
+      <div class="sec-num">03</div>
+      <div class="sec-info">
+        <div class="sec-titulo">Produto — O que oferecer além do quarto</div>
+        <div class="sec-sub">A pousada precisa ter resposta para quem pergunta sobre roteiro</div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-top">
+          <div class="card-icon">🗺️</div>
+          <div class="card-info">
+            <div class="card-titulo">Roteiro pronto para enviar</div>
+            <span class="card-tag tag-laranja">Prioridade alta</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Ter um roteiro de 1, 2 e 3 dias em PDF ou mensagem pronta para enviar no WhatsApp quando o cliente perguntar sobre o que fazer.</p>
+          <ul>
+            <li>Ruínas + Museu + Espetáculo</li>
+            <li>Benzimento com Dona Alzira</li>
+            <li>Fonte Missioneira + Borrario</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <div class="card-icon">🤝</div>
+          <div class="card-info">
+            <div class="card-titulo">Parceiros para traslado</div>
+            <span class="card-tag tag-laranja">Prioridade alta</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Ter contato de guias e transportadoras para grupos. Quando cliente pede pacote com transporte, a pousada mantém o cliente e indica o parceiro — não manda embora.</p>
+          <ul>
+            <li>Guias credenciados locais</li>
+            <li>Transportadoras para grupos</li>
+            <li>Agências parceiras da região</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <div class="card-icon">📦</div>
+          <div class="card-info">
+            <div class="card-titulo">Pacote básico para grupos</div>
+            <span class="card-tag tag-preto">Médio prazo</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Montar uma proposta padrão para grupos acima de 10 pessoas com hospedagem + café da manhã + indicação de roteiro. Ter isso pronto evita perder grupos como o de Cruz Alta.</p>
+          <ul>
+            <li>Tabela de grupos por pessoa</li>
+            <li>Capacidade máxima da pousada</li>
+            <li>Condições especiais para agências</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABA 4: PERGUNTAS -->
+<div id="tab-perguntas" class="tab-content">
+  <div class="main">
+
+    <div class="highlight">
+      <div class="highlight-label">Prepare-se para a reunião</div>
+      <div class="highlight-text">Possíveis perguntas e<br><span>como responder.</span></div>
+      <div class="highlight-sub">Clique em cada pergunta para ver a resposta recomendada. Foco em dado, não em emoção.</div>
+    </div>
+
+    <div class="sec-header vermelho" style="margin-bottom:20px">
+      <div class="sec-num">01</div>
+      <div class="sec-info">
+        <div class="sec-titulo">Perguntas da Sandra</div>
+        <div class="sec-sub">Argumentos mais prováveis baseados na conversa de hoje</div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-sandra">Sandra</span>
+        <div class="pergunta-texto">"Pedro só aponta defeitos e erros. A gente tá fazendo o que pode."</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          Não é sobre apontar defeitos — é sobre entender onde o funil está quebrando para poder melhorar. Os dados mostram que 725 pessoas chegaram até vocês. O objetivo desta reunião é justamente resolver o processo para que essas conversas virem reservas.
+          <em>"Não estou aqui para apontar culpa. Estou aqui para ajudar a resolver."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-sandra">Sandra</span>
+        <div class="pergunta-texto">"As pessoas só chamam por curiosidade, não querem se hospedar."</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          Curiosidade não clica em anúncio de hospedagem e abre conversa no WhatsApp. Quem faz isso está no mínimo considerando se hospedar. Além disso, a própria Sandra confirmou hoje que as pessoas querem saber sobre o que está nos anúncios — as Missões, os roteiros, as experiências. Quem pergunta sobre isso precisa de onde ficar.
+          <em>"Quem pergunta sobre roteiro das Missões precisa de hospedagem. O que falta é a resposta certa para fechar."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-sandra">Sandra</span>
+        <div class="pergunta-texto">"O marketing precisa mostrar mais a pousada, não as atrações."</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          A própria Sandra disse hoje: "as pessoas não querem conhecer um quarto da pousada, elas querem saber sobre o que está nos anúncios." Essa afirmação confirma que a estratégia atual está correta. Ninguém viaja para São Miguel para conhecer um quarto — viajam pelas Missões. A pousada é onde elas ficam para viver isso.
+          <em>"Anunciar a experiência é o que gera os 725 leads. Mudar isso reduziria o resultado, não aumentaria."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-sandra">Sandra</span>
+        <div class="pergunta-texto">"A gente não tem o que dizer pro cliente porque foge muito da estadia."</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          Esse é exatamente o ponto que precisa ser resolvido aqui na reunião. A pousada precisa ter respostas prontas para quem pergunta sobre roteiro — não porque é obrigação do marketing, mas porque é o que fecha a venda. A sugestão é criar um roteiro padrão de 1, 2 e 3 dias para enviar no WhatsApp quando o cliente perguntar.
+          <em>"A solução está na aba de soluções desta apresentação. É simples de implementar."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-sandra">Sandra</span>
+        <div class="pergunta-texto">"Eu já faço follow-up — na outra semana entro em contato novamente."</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          Follow-up feito em alguns casos não é processo. Processo é ter um fluxo definido para todos os leads que param de responder — dia 2, dia 5, dia 10 — independente de quem está atendendo. Sem padrão, depende de memória e boa vontade, e leads ficam esquecidos.
+          <em>"A proposta é justamente formalizar isso para que aconteça com todos os leads, não só com alguns."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-header laranja" style="margin-bottom:20px; margin-top:40px">
+      <div class="sec-num">02</div>
+      <div class="sec-info">
+        <div class="sec-titulo">Perguntas do Dono</div>
+        <div class="sec-sub">José Roberto — perguntas focadas em resultado e investimento</div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-dono">José Roberto</span>
+        <div class="pergunta-texto">"Tivemos 300 pessoas no Som e Luz e só 1 na pousada. O marketing não está funcionando?"</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          300 pessoas no espetáculo prova que o interesse existe. A maioria não ficou na pousada porque não sabia que ela existia ou não foi convertida quando entrou em contato. O marketing gerou 725 conversas com R$878 investidos. O funil funciona até o lead chegar — o gargalo está na conversão dessas conversas em reservas.
+          <em>"O problema não é atrair. É converter. E converter é processo de atendimento."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-dono">José Roberto</span>
+        <div class="pergunta-texto">"Quanto investimos e qual foi o retorno concreto em reservas?"</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          Foram R$878,64 investidos em mídia, gerando 725 conversas a R$1,21 cada. O retorno em reservas confirmadas não consigo mensurar porque não tenho acesso ao histórico de reservas — apenas ao que chega via anúncio. Para medir o ROI real, precisaria saber quantas dessas 725 conversas viraram reserva.
+          <em>"Se você me der acesso ao número de reservas do período, consigo calcular o retorno exato."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-dono">José Roberto</span>
+        <div class="pergunta-texto">"Por que o script de atendimento não foi adotado?"</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          O script foi entregue como contribuição extra — fora do meu escopo contratado. A decisão de adotar ou não pertence ao setor de atendimento. Internamente não foi adotado. Estou aqui disponível para apresentar o script novamente e ajustar o que for necessário para que faça sentido para a equipe.
+          <em>"Posso apresentar o script agora se quiser. Está na aba de soluções."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-dono">José Roberto</span>
+        <div class="pergunta-texto">"Vale a pena continuar investindo em marketing se não estamos fechando?"</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          R$1,21 por lead é um custo excelente. O problema não é o marketing — pausar as campanhas não vai fechar mais reservas, só vai parar de gerar oportunidades. A solução é resolver o processo de atendimento para aproveitar os leads que já estão chegando. Com o atendimento ajustado, cada R$1,21 investido tem muito mais chance de virar reserva.
+          <em>"Parar o marketing não resolve o atendimento. Resolver o atendimento é o que vai mudar o resultado."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-dono">José Roberto</span>
+        <div class="pergunta-texto">"O que você precisa de nós para o marketing funcionar melhor?"</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          Três coisas: primeiro, que o processo de follow-up seja implementado pela equipe de atendimento. Segundo, que a pousada tenha um roteiro padrão para enviar quando o cliente perguntar sobre o que fazer. Terceiro, acesso ao número de reservas geradas pelo período de campanha para conseguir calcular o ROI real e otimizar os anúncios com base em resultado de verdade.
+          <em>"Com essas três coisas, consigo entregar resultado muito mais preciso."</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="pergunta-card" onclick="togglePergunta(this)">
+      <div class="pergunta-header">
+        <span class="pergunta-quem quem-ambos">Ambos</span>
+        <div class="pergunta-texto">"Qual é a sua sugestão concreta para resolver isso?"</div>
+        <div class="pergunta-toggle">+</div>
+      </div>
+      <div class="pergunta-resposta">
+        <div class="resp-label">✅ Como responder</div>
+        <div class="resp-texto">
+          Três ações imediatas: implementar o fluxo de follow-up de 3 mensagens para leads que param de responder, criar um roteiro padrão de 1, 2 e 3 dias para enviar no WhatsApp, e treinar a equipe para responder a pergunta do cliente antes de passar o preço. Nenhuma dessas ações depende de mais investimento em marketing — dependem de processo interno.
+          <em>"Está tudo detalhado na aba de Soluções desta apresentação."</em>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-txt">Pousada das Missões · <span>Reunião 01/06/2026</span> · Apresentação elaborada por Pedro Munaretto</div>
+</footer>
+
+<script>
+  function showTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function togglePergunta(card) {
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.pergunta-card').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
